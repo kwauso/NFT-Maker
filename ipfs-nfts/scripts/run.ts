@@ -1,23 +1,25 @@
-// run.ts
-const hre = require("hardhat")
+// run.js
+const hre = require("hardhat");
 const main = async () => {
-// コントラクトがコンパイルします
-// コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
     const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
-// Hardhat がローカルの Ethereum ネットワークを作成します。
     const nftContract = await nftContractFactory.deploy();
-// コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
-    await nftContract.waitForDeployment();
-        const address = await nftContract.getAddress()
-        console.log("Contract deployed to:", address);
+    await nftContract.deployed();
+    console.log("Contract deployed to:", nftContract.address);
+// makeAnEpicNFT 関数を呼び出す。NFT が Mint される。
+    let txn = await nftContract.makeAnEpicNFT();
+// Minting が仮想マイナーにより、承認されるのを待つ。
+    await txn.wait();
+// makeAnEpicNFT 関数をもう一度呼び出す。NFT がまた Mint される。
+    txn = await nftContract.makeAnEpicNFT();
+// Minting が仮想マイナーにより、承認されるのを待つ。
+    await txn.wait();
 };
-// エラー処理を行っています。
 (async () => {
     try {
         await main();
         process.exit(0);
     } catch (err) {
-        console.log(err);
+        console.error(err);
         process.exit(1);
     }
 })();
