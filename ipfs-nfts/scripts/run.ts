@@ -3,8 +3,9 @@ const hre = require("hardhat");
 const main = async () => {
     const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
     const nftContract = await nftContractFactory.deploy();
-    await nftContract.deployed();
-    console.log("Contract deployed to:", nftContract.address);
+    await nftContract.waitForDeployment();
+    const address = await nftContract.getAddress()
+    console.log("Contract deployed to:", address);
 // makeAnEpicNFT 関数を呼び出す。NFT が Mint される。
     let txn = await nftContract.makeAnEpicNFT();
 // Minting が仮想マイナーにより、承認されるのを待つ。

@@ -14,7 +14,7 @@ contract Web3Mint is ERC721URIStorage {
     uint256 private _tokenIds;
     // NFT トークンの名前とそのシンボルを渡します。
     constructor() ERC721 ("TanyaNFT", "TANYA") {
-    console.log("This is my NFT contract.");
+    console.log("This is my NFT contract!!!");
     }
     // ユーザーが NFT を取得するために実行する関数です。
     function makeAnEpicNFT() public {
