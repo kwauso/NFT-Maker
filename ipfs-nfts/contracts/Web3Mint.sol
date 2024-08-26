@@ -24,7 +24,7 @@ contract Web3Mint is ERC721URIStorage {
         // msg.sender を使って NFT を送信者に Mint します。
         _safeMint(msg.sender, newItemId);
         // NFT データを設定します。
-        _setTokenURI(newItemId, "https://jsonkeeper.com/b/OLSM");
+        _setTokenURI(newItemId, "https://jsonkeeper.com/b/S9ID");
         // NFT がいつ誰に作成されたかを確認します。
         console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
         // 次の NFT が Mint されるときのカウンターをインクリメントする。
