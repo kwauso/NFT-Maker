@@ -1,4 +1,4 @@
-// run.js
+// run.ts
 const hre = require("hardhat");
 const main = async () => {
     const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
@@ -24,3 +24,4 @@ const main = async () => {
         process.exit(1);
     }
 })();
+export {}
